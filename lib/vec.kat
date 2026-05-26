@@ -1,0 +1,12 @@
+public _x = 0
+public _y = 1
+public _z = 2
+public Vector = (x,y,z)
+public Neg = Vector(-v:_x, -v:_y, -v:_z)
+public Scale = Vector(q~*v:_x, q*v:_y, q*v:_z)
+public Add = Vector(a:_x+b:_x, a:_y+b:_y, a:_z+b:_z)
+public Subtract = Vector(Add(a,Neg(b)))
+public CrossProd = Vector(a:_y*b:_z - a:_z*b:_y, a:_z*b:_x - a:_x*b:_z, a:_x*b:_y - a:_y*b:_x)
+public DotProd = (a:_x*b:_x, a:_y*b:_y, a:_z*b:_z).sum
+public Norm = DotProd(v,v)
+public Magnitude = Math.Sqrt(Norm(v))
