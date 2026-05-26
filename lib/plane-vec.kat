@@ -1,0 +1,10 @@
+public _x = 0
+public _y = 1
+public Vector = (x,y)
+public Neg = Vector(-v:_x, -v:_y)
+public Scale = Vector(q~*v:_x, q*v:_y)
+public Add = Vector(a:_x+b:_x, a:_y+b:_y)
+public Subtract = Vector(Add(a,Neg(b)))
+public DotProd = a:_x*b:_x + a:_y*b:_y
+public Norm = DotProd(v,v)
+public Magnitude = Math.Sqrt(Norm(v))
