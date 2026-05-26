@@ -1,0 +1,16 @@
+{
+  "libraries": [
+    {
+      "name": "Plane Vector",
+      "file": "plane-vec.kat",
+      "author": "CY Fung",
+      "license": "MIT License"
+    },
+    {
+      "name": "3D Vector",
+      "file": "vec.kat",
+      "author": "CY Fung",
+      "license": "MIT License"
+    }
+  ]
+}
