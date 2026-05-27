@@ -2,13 +2,13 @@ Reusable public libraries for [KatLang](https://katlang.org).
 
 # Usage
 
-On the KatLang web console, you can use the libraries in `./lib` by `open https://katlang.org/lib/*.kat` where * refers to file name including subfolders.
+On the KatLang web console, you can use the libraries in `./lib` by `open https://katlang.org/l/*.kat` where * refers to file name including subfolders.
 
-In the KatLang web console, you can use libraries from `./lib` with `open 'https://katlang.org/lib/*.kat'` where, * represents the file path, including any subfolders and the .kat file name.
+In the KatLang web console, you can use libraries from `./lib` with `open 'https://katlang.org/l/*.kat'` where, * represents the file path, including any subfolders and the .kat file name.
 
 ## Example
 ```
-open 'https://katlang.org/lib/vec.kat'
+open 'https://katlang.org/l/vec.kat'
 
 InitialSpeed = 30.3 // the approximate speed of a soccer ball when being kicked by a professional soccer player, 70 mph in m/s
 InitialAngle = Math.Pi/6 // Assuming an initial angle of 30°
