@@ -22,31 +22,31 @@ open 'https://katlang.org/libraries/plane-vec.kat'
 
 InitialSpeed = 30.3 // the approximate speed of a soccer ball when being kicked by a professional soccer player, 70 mph in m/s
 InitialAngle = Math.Pi/6 // Assuming an initial angle of 30°
-u_ = Vector(InitialSpeed*Math.Cos(InitialAngle), InitialSpeed*Math.Sin(InitialAngle))
-a_ = Vector(0, -9.8)
-v_ = Add(u_, Scale(a_,t))
-s_ = Add(Scale(u_,t), Scale(a_,1/2*t^2))
+u = Vector(InitialSpeed*Math.Cos(InitialAngle), InitialSpeed*Math.Sin(InitialAngle))
+a = Vector(0, -9.8)
+v = Add(u, Scale(a,t))
+s = Add(Scale(u,t), Scale(a,1/2*t^2))
 
 
 'velocity and displacement at time = 0'
-v_(0)
-s_(0)
+v(0)
+s(0)
 
 'velocity and displacement at time = 2.0'
-v_(2.0)
-s_(2.0)
+v(2.0)
+s(2.0)
 
 'time, velocity and displacement at highest point'
-t_highest = v_(0):_y/Math.Abs(a_:_y)
+t_highest = v(0):_y/Math.Abs(a:_y)
 t_highest
-v_(t_highest)
-s_(t_highest)
+v(t_highest)
+s(t_highest)
 
 'time, velocity and displacement when hitting back to the ground'
-t_final = 2*(v_(0):_y)/Math.Abs(a_:_y)
+t_final = 2*(v(0):_y)/Math.Abs(a:_y)
 t_final
-v_(t_final)
-s_(t_final)
+v(t_final)
+s(t_final)
 ```
 Output
 ```
