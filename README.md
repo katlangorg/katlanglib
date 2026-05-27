@@ -18,12 +18,12 @@ open 'https://katlang.org/libraries/math/statistics.kat'
 
 ## Example
 ```
-open 'https://katlang.org/libraries/vec.kat'
+open 'https://katlang.org/libraries/plane-vec.kat'
 
 InitialSpeed = 30.3 // the approximate speed of a soccer ball when being kicked by a professional soccer player, 70 mph in m/s
 InitialAngle = Math.Pi/6 // Assuming an initial angle of 30°
-u_ = Vector(InitialSpeed*Math.Cos(InitialAngle), InitialSpeed*Math.Sin(InitialAngle), 0)
-a_ = Vector(0, -9.8, 0)
+u_ = Vector(InitialSpeed*Math.Cos(InitialAngle), InitialSpeed*Math.Sin(InitialAngle))
+a_ = Vector(0, -9.8)
 v_ = Add(u_, Scale(a_,t))
 s_ = Add(Scale(u_,t), Scale(a_,1/2*t^2))
 
@@ -51,19 +51,19 @@ s_(t_final)
 Output
 ```
 velocity and displacement at time = 0
-26.2405697346685017, 15.15, 0
-0.0, 0.00, 0.0
+26.2405697346685017, 15.15
+0.0, 0.00
 velocity and displacement at time = 2.0
-26.2405697346685017, -4.45, 0.0
-52.48113946933700340, 10.7000, 0.000
+26.2405697346685017, -4.45
+52.48113946933700340, 10.7000
 time, velocity and displacement at highest point
 1.5459183673469387755102040816
-26.2405697346685017, 0.000000000000000000000000000, 0
-40.565778722472224566836734693, 11.710331632653061224489795919, 0
+26.2405697346685017, 0.000000000000000000000000000
+40.565778722472224566836734693, 11.710331632653061224489795919
 time, velocity and displacement when hitting back to the ground
 3.0918367346938775510204081633
-26.2405697346685017, -15.150000000000000000000000000, 0
-81.13155744494444913367346939, -0.000000000000000000000000002, 0
+26.2405697346685017, -15.150000000000000000000000000
+81.13155744494444913367346939, -0.000000000000000000000000002
 ```
 # Contribution Guidelines
 
