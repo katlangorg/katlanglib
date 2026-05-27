@@ -12,5 +12,11 @@
       "author": "CY Fung",
       "license": "MIT License"
     }
+    {
+      "name": "Remote algorithm example",
+      "file": "example.kat",
+      "author": "Mikus Vanags",
+      "license": "MIT License"
+    }
   ]
 }
