@@ -1,0 +1,11 @@
+// The algorithm has three private metadata properties.
+Author = 'Mikus Vanags'
+Version = '1.0'
+Description = 'KatLang library demonstration'
+
+// The algorithm has one public property named 'X', visible to library users.
+public X = 20
+
+// The algorithm produces two output values: 2 + 3 and 6.
+2 + 3
+6
