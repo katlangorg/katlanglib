@@ -13,7 +13,7 @@ Library authors may organize `.kat` files in subfolders. The folder path is incl
 For example:
 
 ```katlang
-open 'https://katlang.org/libraries/math/statistics.kat'
+open 'https://katlang.org/libraries/examples/algorithm.kat'
 ```
 
 ## Example
