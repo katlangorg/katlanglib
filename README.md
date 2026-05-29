@@ -37,13 +37,13 @@ v(2.0)
 s(2.0)
 
 'time, velocity and displacement at highest point'
-t_highest = v(0):_y/Math.Abs(a:_y)
+t_highest = v(0).Y/Math.Abs(a.Y)
 t_highest
 v(t_highest)
 s(t_highest)
 
 'time, velocity and displacement when hitting back to the ground'
-t_final = 2*(v(0):_y)/Math.Abs(a:_y)
+t_final = 2*(v(0).Y)/Math.Abs(a.Y)
 t_final
 v(t_final)
 s(t_final)
@@ -72,7 +72,7 @@ Finally, create a pull request for your changes.
 
 The `.kat` file should be named in the kebab case.
 
-New libraries are suggested to adapt the MIT license, which the [KatLang language](https://github.com/katlangorg/katlangnet) is using,
+New libraries are suggested to adapt the MIT license, which the [KatLang language](https://github.com/katlangorg/katlangnet) is using;
 while other [open-source licenses](https://opensource.org/licenses?categories=other-miscellaneous%2Cpopular-strong-community) are acceptable too.
 
 If you have any queries, welcome to open an issue.
