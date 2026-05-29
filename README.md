@@ -1,4 +1,4 @@
-Reusable public libraries for [KatLang](https://katlang.org).
+Official Reusable public libraries for [KatLang](https://katlang.org).
 
 # Usage
 
@@ -72,7 +72,6 @@ Finally, create a pull request for your changes.
 
 The `.kat` file should be named in the kebab case.
 
-New libraries are suggested to adapt the MIT license, which the [KatLang language](https://github.com/katlangorg/katlangnet) is using;
-while other [open-source licenses](https://opensource.org/licenses?categories=other-miscellaneous%2Cpopular-strong-community) are acceptable too.
+New libraries will adapt the MIT license, which the [KatLang language](https://github.com/katlangorg/katlangnet) is using.
 
 If you have any queries, welcome to open an issue.
