@@ -1,8 +1,3 @@
-// The algorithm has three private metadata properties.
-Author = 'Mikus Vanags'
-Version = '1.0'
-Description = 'KatLang library demonstration'
-
 // The algorithm has one public property named 'X', visible to library users.
 public X = 20
 
