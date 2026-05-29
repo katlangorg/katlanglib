@@ -1,12 +1,18 @@
-public _x = 0
-public _y = 1
-GetX = v:_x
-GetY = v:_y
-public Vector = (x,y)
-public Neg = Vector(-v:_x, -v:_y)
-public Scale = Vector(q~*v:_x, q*v:_y)
-public Add(vectors...) = Vector(vectors.map(GetX).sum, vectors.map(GetY).sum)
-public Subtract = Vector(Add(a,Neg(b)))
-public DotProd = a:_x*b:_x + a:_y*b:_y
-public Norm = DotProd(v,v)
-public Magnitude = Math.Sqrt(Norm(v))
+open Math
+
+public Vector = (x, y)
+
+public X((x, y)) = x
+public Y((x, y)) = y
+
+public Neg = Vector(-v.X, -v.Y)
+
+public Scale(v, q) = Vector(q * v.X, q * v.Y)
+
+public Add(v, vectors...) = Vector(v.X + vectors.map{X}.sum, v.Y + vectors.map{Y}.sum)
+
+public Subtract(v, vectors...) = Vector(v.X - vectors.map{X}.sum, v.Y - vectors.map{Y}.sum)
+
+public DotProd = a.X * b.X + a.Y * b.Y
+
+public Magnitude = DotProd(v, v).Sqrt
