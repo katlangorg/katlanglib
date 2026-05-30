@@ -18,15 +18,14 @@ open 'https://katlang.org/libraries/examples/algorithm.kat'
 
 ## Example
 ```
-open 'https://katlang.org/libraries/plane-vec.kat'
+open 'https://katlang.org/libraries/plane-vec.kat', Math
 
 InitialSpeed = 30.3 // the approximate speed of a soccer ball when being kicked by a professional soccer player, 70 mph in m/s
-InitialAngle = Math.Pi/6 // Assuming an initial angle of 30°
-u = Vector(InitialSpeed*Math.Cos(InitialAngle), InitialSpeed*Math.Sin(InitialAngle))
+InitialAngle = Pi / 6 // Assuming an initial angle of 30°
+u = Vector(InitialSpeed * Cos(InitialAngle), InitialSpeed * Sin(InitialAngle))
 a = Vector(0, -9.8)
-v = Add(u, Scale(a,t))
-s = Add(Scale(u,t), Scale(a,1/2*t^2))
-
+v = u.Add(a.Scale(t))
+s = u.Scale(t).Add(a.Scale(0.5*t^2))
 
 'velocity and displacement at time = 0'
 v(0)
@@ -37,13 +36,13 @@ v(2.0)
 s(2.0)
 
 'time, velocity and displacement at highest point'
-t_highest = v(0).Y/Math.Abs(a.Y)
+t_highest = v(0).Y / Abs(a.Y)
 t_highest
 v(t_highest)
 s(t_highest)
 
 'time, velocity and displacement when hitting back to the ground'
-t_final = 2*(v(0).Y)/Math.Abs(a.Y)
+t_final = 2 * t_highest
 t_final
 v(t_final)
 s(t_final)
