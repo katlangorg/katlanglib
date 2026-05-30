@@ -1,0 +1,30 @@
+// complex number library in development
+
+open Math
+
+public Complex = (x, y)
+
+public Re((x, y)) = x
+public Im((x, y)) = y
+public Re(r) = r
+public Im(r) = 0
+
+// public Add(z, Nums...) = Complex(z.Re + Nums.map{Re}.sum, z.Im + Nums.map{Im}.sum)
+
+public Add(z, w) = Complex(z.Re + w.Re , z.Im + w.Im)
+
+public Multiply = Complex(z.Re * w.Re - z.Im * w.Im, z.Re * w.Im + z.Im * w.Re)
+
+public Conjugate = Complex(z.Re , -z.Im)
+
+SqModulus = Multiply(z, Conjugate(z)).Re
+
+public Modulus = SqModulus.Sqrt
+
+public Argument = Atan2(z.Im, z.Re)
+
+public DividedBy = Multiply(z,Conjugate(w)).Multiply(1/w.SqModulus)
+
+public Reciprocal = Complex(z.Re/z.SqModulus , -z.Im/z.SqModulus)
+
+// to be implemented Complex logarithm, Complex exponentiation
