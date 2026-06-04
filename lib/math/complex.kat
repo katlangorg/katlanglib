@@ -19,7 +19,7 @@ public Conjugate = Complex(z.Re , -z.Im)
 
 SqModulus = Multiply(z, Conjugate(z)).Re
 
-public Modulus = SqModulus.Sqrt
+public Modulus = SqModulus(z).Sqrt
 
 public Argument = Atan2(z.Im, z.Re)
 
