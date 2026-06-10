@@ -68,6 +68,8 @@ Primes =
 
 PrimesCount = Primes.count
 LargestPrimeSaved = Primes:(PrimesCount-1)
+
+
 FloorOdd(N) = if(N mod 2 == 0, N-1, N)
 _IsPrime(2) = 1
 _IsPrime(3) = 1
@@ -82,6 +84,7 @@ _IsPrime(N) = {
     )
 }
 
+
 IsSmallPrime(2) = 1
 IsSmallPrime(N) = {
     FloorSqrtN = Floor(Sqrt(N))
@@ -89,6 +92,7 @@ IsSmallPrime(N) = {
     Index = while(IsSmallPrimeStep, 0)
     Primes:Index > FloorSqrtN
 }
+
 
 public IsPrime(N) = {
     SmallInteger = LargestPrimeSaved*LargestPrimeSaved
@@ -99,4 +103,63 @@ public IsPrime(N) = {
     )
 }
 
-// PrimeFactors(N)
+
+_PrimeFactors(n) = {
+    DivideStep(current, factors..., prime) =
+     current div prime, factors.content...prime, prime, current mod prime == 0
+ 
+    StripLoopPrime((current, factors..., loopPrime)) =
+     (current, factors...)
+ 
+    ApplyPrime(prime, (current, factors...)) =
+     StripLoopPrime(DivideStep.while(current, factors..., prime))
+
+    Initial = (n,1)
+    reduce(Primes.filter{p<=n}..., ApplyPrime, Initial)
+}
+
+
+WheelFactorization(n) = {
+    Increment(i) = if(i == 0, 4,
+        if(i == 1, 2,
+        if(i == 2, 4,
+        if(i == 3, 2,
+        if(i == 4, 4,
+        if(i == 5, 6,
+        if(i == 6, 2, 6)))))))
+
+    NextIndex(i) = if(i == 7, 0, i + 1)
+     
+    RemovePrime(p, value) = {
+        Divide(current, factors...) = current / p, factors...p, current mod p == 0
+        Finish(current, factors...) = factors..., current
+     
+        Finish(Divide.while(value)...)
+    }
+     
+    Wheel(value) = {
+        Step(factors..., d, i, current) = if(
+            d * d <= current,
+            {
+                Divide(candidateValue, copies...) = candidateValue / d, copies...d, candidateValue mod d == 0
+                Removed = Divide.while(current)
+                Advance(removedValue, newFactors...) = factors...newFactors..., d + Increment(i), NextIndex(i), removedValue, 1
+     
+                (Advance(Removed...))
+            },
+            (factors..., d, i, current, 0).content
+        )
+     
+        Finish(factors..., d, i, current) = factors...if(current > 1, current, empty)
+     
+        Finish(Step.while(1 + LargestPrimeSaved - LargestPrimeSaved mod 36, 0, value)...)
+    }
+    
+    SmallFactorization = _PrimeFactors(n).content
+    Temp = SmallFactorization:0
+    SmallFactors = SmallFactorization:1.content.skip(1)
+    if(Temp == 1, SmallFactors, (SmallFactors...Wheel(Temp).content))
+}
+
+
+public PrimeFactors(n) = WheelFactorization(n)
