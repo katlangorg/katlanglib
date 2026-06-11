@@ -94,6 +94,9 @@ IsSmallPrime(N) = {
 }
 
 
+IsListedPrime(N) = Primes.contains(N)
+
+
 public IsPrime(N) = {
     SmallInteger = LargestPrimeSaved*LargestPrimeSaved
     if(N <= LargestPrimeSaved, 
