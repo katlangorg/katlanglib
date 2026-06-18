@@ -9,9 +9,9 @@ public Neg = Vector(-v.X, -v.Y)
 
 public Scale(v, q) = Vector(q * v.X, q * v.Y)
 
-public Add(v, vectors...) = Vector(v.X + vectors.map(X).sum, v.Y + vectors.map(Y).sum)
+public Add(v, w) = Vector(v.X + w.X, v.Y + w.Y)
 
-public Subtract(v, vectors...) = Vector(v.X - vectors.map(X).sum, v.Y - vectors.map(Y).sum)
+public Subtract(v, w) = Vector(v.X - w.X, v.Y - w.Y)
 
 public DotProd = a.X * b.X + a.Y * b.Y
 
