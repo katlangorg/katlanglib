@@ -76,21 +76,21 @@ _IsPrime(3) = 1
 _IsPrime(5) = 1
 _IsPrime(7) = 1
 _IsPrime(N) = {
-    IsPrimeStep = D-2, N mod D != 0 and D > 3
+    Helper = FloorOdd(Floor(Sqrt(N)))
+    Step = D+2, N mod D != 0 and D < Helper
     Output = if(
         N mod 2 == 0 or N mod 3 == 0, 
         0, 
-        while(IsPrimeStep, FloorOdd(Floor(Sqrt(N)))) == 3
+        Step.while(3) == Helper
     )
 }
 
-
-IsSmallPrime(2) = 1
+IsSmallPrime(1) = 0
 IsSmallPrime(N) = {
-    FloorSqrtN = Floor(Sqrt(N))
-    IsSmallPrimeStep = k+1, N mod Primes:k != 0 and Primes:k < FloorSqrtN
-    Index = while(IsSmallPrimeStep, 0)
-    Primes:Index > FloorSqrtN
+    FloorSqrt = Floor(Sqrt(N))
+    Step = k+1, N mod Primes:k != 0 and Primes:k < FloorSqrt
+    Index = Step.while(0)
+    Primes:Index > FloorSqrt
 }
 
 
@@ -180,9 +180,9 @@ public Factors(n) = {
         Left((A, B)) = A
         Right((A, B)) = B
         Div = if(n mod d == 0, ((Left(init)...d), (n/d, Right(init)...)), init)
-        Isqrt = Floor(Sqrt(n))
-        Temp = reduce(range(2, Isqrt-1), Div, ((1),(n)))
-        (Left(Temp)... if(n mod Isqrt == 0, Isqrt, ())... Right(Temp)...)
+        FloorSqrt = Floor(Sqrt(n))
+        Temp = reduce(range(2, FloorSqrt-1), Div, ((1),(n)))
+        (Left(Temp)... if(n mod FloorSqrt == 0, FloorSqrt, ())... Right(Temp)...)
     }
     _Factors(n)
 }
@@ -207,5 +207,7 @@ public IsSquareFree(num) = {
     }
     Step.while(2, 0):1 == 0
 }
+
+
 
 // Moebius
