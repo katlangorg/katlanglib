@@ -111,19 +111,18 @@ public IsPrime(N) = {
 
 
 _PrimeFactors(n) = {
-    DivideStep(current, factors..., prime) =
-     current div prime, factors.content...prime, prime, current mod prime == 0
+    DivideStep(current, factors, prime) =
+     current div prime, (factors...prime), prime, current mod prime == 0
  
-    StripLoopPrime((current, factors..., loopPrime)) =
-     (current, factors...)
+    StripLoopPrime((current, factors, loopPrime)) =
+     (current, factors)
  
-    ApplyPrime(prime, (current, factors...)) =
-     StripLoopPrime(DivideStep.while(current, factors..., prime))
+    ApplyPrime(prime, (current, factors)) =
+     StripLoopPrime(DivideStep.while(current, factors, prime))
 
-    Initial = (n,1)
-    reduce(Primes.filter{p<=n}..., ApplyPrime, Initial)
+    Initial = (n, ())
+    Primes.filter{p<=n}.reduce(ApplyPrime, Initial)
 }
-
 
 WheelFactorization(n) = {
     Increment(i) = if(i == 0, 4,
@@ -136,35 +135,28 @@ WheelFactorization(n) = {
 
     NextIndex(i) = if(i == 7, 0, i + 1)
      
-    RemovePrime(p, value) = {
-        Divide(current, factors...) = current / p, factors...p, current mod p == 0
-        Finish(current, factors...) = factors..., current
-     
-        Finish(Divide.while(value)...)
-    }
-     
     Wheel(value) = {
-        Step(factors..., d, i, current) = if(
+        Step(factors, d, i, current) = if(
             d * d <= current,
             {
-                Divide(candidateValue, copies...) = candidateValue / d, copies...d, candidateValue mod d == 0
-                Removed = Divide.while(current)
-                Advance(removedValue, newFactors...) = factors...newFactors..., d + Increment(i), NextIndex(i), removedValue, 1
-     
+                Divide(candidateValue, copies) = candidateValue / d, (copies...d), candidateValue mod d == 0
+                Removed = Divide.while(current, ())
+                Advance(removedValue, newFactors...) = (factors...newFactors...), d + Increment(i), NextIndex(i), removedValue, 1
+
                 (Advance(Removed...))
             },
-            (factors..., d, i, current, 0).content
-        )
+            (factors, d, i, current, 0)
+        )...
      
-        Finish(factors..., d, i, current) = factors...if(current > 1, current, empty)
+        Finish(factors, d, i, current) = factors...if(current > 1, current, ())
      
-        Finish(Step.while(1 + LargestPrimeSaved - LargestPrimeSaved mod 36, 0, value)...)
+        Finish(Step.while((), 1 + LargestPrimeSaved - LargestPrimeSaved mod 36, 0, value)...)
     }
     
-    SmallFactorization = _PrimeFactors(n).content
+    SmallFactorization = _PrimeFactors(n)...
     Temp = SmallFactorization:0
-    SmallFactors = SmallFactorization:1.content.skip(1)
-    if(Temp == 1, SmallFactors, (SmallFactors...Wheel(Temp).content))
+    SmallFactors = SmallFactorization:1
+    if(Temp == 1, SmallFactors, (SmallFactors...Wheel(Temp)...))
 }
 
 
@@ -184,12 +176,14 @@ public Factors(n) = {
     _Factors(1) = 1
     _Factors(2) = (1, 2)
     _Factors(3) = (1, 3)
+    _Factors(4) = (1, 2, 4)
     _Factors(n) = {
-        Left((A,B)) = A.content
-        Right((A,B)) = B.content
-        Div = if(n mod d == 0, ((Left(init)...d),(n/d...Right(init)...)), init)
-        Temp = reduce(range(2,Math.Floor(Math.Sqrt(n)))..., Div, ((1),(n)))
-        Temp:0...if((Temp:0).last == (Temp:1).first,(Temp:1).skip(1),Temp:1)
+        Left((A, B)) = A
+        Right((A, B)) = B
+        Div = if(n mod d == 0, ((Left(init)...d), (n/d, Right(init)...)), init)
+        Isqrt = Floor(Sqrt(n))
+        Temp = reduce(range(2, Isqrt-1), Div, ((1),(n)))
+        (Left(Temp)... if(n mod Isqrt == 0, Isqrt, ())... Right(Temp)...)
     }
     _Factors(n)
 }
