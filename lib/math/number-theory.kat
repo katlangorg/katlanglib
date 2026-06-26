@@ -110,7 +110,7 @@ public IsPrime(N) = {
 }
 
 
-_PrimeFactors(n) = {
+PrimeFactorsHelper(n) = {
     DivideStep(current, factors, prime) =
      current div prime, (factors...prime), prime, current mod prime == 0
  
@@ -153,9 +153,8 @@ WheelFactorization(n) = {
         Finish(Step.while((), 1 + LargestPrimeSaved - LargestPrimeSaved mod 36, 0, value)...)
     }
     
-    SmallFactorization = _PrimeFactors(n)...
-    Temp = SmallFactorization:0
-    SmallFactors = SmallFactorization:1
+    SmallFactorization = PrimeFactorsHelper(n)
+    Temp, SmallFactors = SmallFactorization
     if(Temp == 1, SmallFactors, (SmallFactors...Wheel(Temp)...))
 }
 
@@ -208,6 +207,5 @@ public IsSquareFree(num) = {
     }
     Step.while(2, 0):1 == 0
 }
-
 
 // Moebius
